@@ -6,7 +6,6 @@ const Home = () =>
 {
     return (
         <div className="home">
-            Home - Conecta Dev
             <Header />
 
             <main className="main">
