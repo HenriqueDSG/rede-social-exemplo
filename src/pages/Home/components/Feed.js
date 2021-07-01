@@ -13,48 +13,48 @@ const useStyles = makeStyles((theme) =>
 const posts = [
     {
         id: 1,
-        autor:
+        author:
         {
             id: 1,
-            name: '',
-            userName: '',
-            avatar: ''
+            name: 'Autor teste 1',
+            userName: 'autorTeste1',
+            avatar: '/images/avatars/avatar.jpg'
         },
-        title: '',
-        date: '',
+        title: 'titulo teste 1',
+        date: '01/07/2021',
         description: 'teste 1',
-        hashTags: '',
-        image: ''
+        hashTags: '#React.JS, #JavaScript, #CSharp',
+        image: '/images/posts/post.jpg'
     },
     {
         id: 2,
-        autor:
+        author:
         {
             id: 2,
-            name: '',
-            userName: '',
-            avatar: ''
+            name: 'Autor teste 2',
+            userName: 'autorTeste2',
+            avatar: '/images/avatars/avatar.jpg'
         },
-        title: '',
-        date: '',
+        title: 'titulo teste 2',
+        date: '01/07/2021',
         description: 'teste 2',
-        hashTags: '',
-        image: ''
+        hashTags: '#React.JS, #JavaScript, #CSharp',
+        image: '/images/posts/post.jpg'
     },
     {
         id: 3,
-        autor:
+        author:
         {
             id: 3,
-            name: '',
-            userName: '',
-            avatar: ''
+            name: 'Autor teste 3',
+            userName: 'autorTeste3',
+            avatar: '/images/avatars/avatar.jpg'
         },
-        title: '',
-        date: '',
+        title: 'titulo teste 3',
+        date: '01/07/2021',
         description: 'teste 3',
-        hashTags: '',
-        image: ''
+        hashTags: '#React.JS, #JavaScript, #CSharp',
+        image: '/images/posts/post.jpg'
     },
 ];
 
