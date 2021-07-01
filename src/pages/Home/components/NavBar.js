@@ -37,7 +37,7 @@ const NavBar = () =>
     return ( 
         
         <Paper className={classes.root}>
-            <Button className={classes.button} variant="outlined" color="secondary">Registrar Gratis</Button>
+            <Button className={classes.button} variant="outlined" color="secondary" href="/sign-in">Registrar Gratis</Button>
             <ListSubheader>{`Tags em Alta`}</ListSubheader>
             {
                 tags.map((item) =>
