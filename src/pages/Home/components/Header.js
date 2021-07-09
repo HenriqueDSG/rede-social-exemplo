@@ -13,24 +13,28 @@ const useStyles = makeStyles(
        {
            boxShadow: 'none'
        },
+
        img:
        {
            maxHeight: 55,
-
        },
+
        grow:
        {
            flexGrow: 1
        },
+
        userSection:
        {
             display: 'flex',
             alignItems: 'center'
        },
+
        button:
        {
            //marginRight: 10
        },
+       
        bell:
        {
             marginRight: 10,
