@@ -5,7 +5,8 @@ mock.onPost("/api/home/login")
     {
         const { email, password } = JSON.parse(config.data);
 
-        if (email !== '') {
+        if (email !== '') 
+        {
             
         }
 
