@@ -45,6 +45,7 @@ const useStyles = makeStyles(
 const Header = () => 
 {
     const classes = useStyles();
+    const usuario = null;
 
     return ( 
         <AppBar className={classes.appBar} position="fixed" color="inherit">
@@ -56,7 +57,7 @@ const Header = () =>
                     <SvgIcon className={classes.bell}>
                         <Bell></Bell>
                     </SvgIcon>
-                    <Avatar alt="Usuario" src="/" />
+                    <Avatar alt="Usuario" src={usuario && usuario.avatar} />
                 </div>
                 {/* <div>
                     <a href="/"> Conecta Dev </a>

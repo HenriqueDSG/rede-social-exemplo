@@ -1,14 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { Grid, Link } from '@material-ui/core';
+import { FormHelperText, Grid, Link } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { Avatar } from '@material-ui/core';
 import  LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { TextField } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { useNavigate } from 'react-router';
-import axios from '../../utils/axios';
+import { useState } from 'react';
+import authService from '../../services/authService';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => 
 ({
@@ -55,8 +57,7 @@ function CopyRight ()
         <Typography variant="body2" align="center" style={{position: "absolute", bottom: 0}}>
              {'CopyRight @ '} 
              <a color="inherit" href="/">Henrique Garcia</a> 
-             {' '}
-             { new Date().getFullYear() }
+             {" " + new Date().getFullYear() }
         </Typography>
     )
 }
@@ -65,28 +66,39 @@ const SignIn = () =>
 {
     const classes = useStyles();
     const navigate = useNavigate();
+    const [campoEmail, setCampoEmail] = useState([]);
+    const [campoSenha, setCampoSenha] = useState([]);
+    const [mensagemErro, setMensagemErro] = useState([]);
+    const dispatch = useDispatch();
+    const account = useSelector(state => state);
+    console.log(account);
 
-    const handleSignIn = () =>
+    const pegarCampoEmail = (evento) => 
     {
-        // axios.get("https://api.github.com/users/HenriqueDSG")
-        // .then(response => 
-        // {
-        //     const usuario = response.data.login;
-        //     console.log(usuario);
-        // })
-        // .catch(error =>
-        // {
-        //     alert("Erro de Login! " + error.message)
-        // })
-
-        axios.post("/api/home/login", {email: 'henriquedsgarcia@gmail.com', password: '000000'}).then(response => console.log(response.data))//.catch(error => alert("Erro de Login! " + error)));
+        setCampoEmail(evento.target.value);
+        setMensagemErro("");
     }
 
-    // async function handleSignInAsync()
-    // {
-    //     const response = await axios.post("/api/home/login");
+    const pegarCampoSenha = (evento) => 
+    {
+        setCampoSenha(evento.target.value);
+        setMensagemErro("");
+    }
 
-    // }
+    const handleSignIn = async () =>
+    {
+        try 
+        {
+            const usuario = { email: campoEmail, senha: campoSenha };
+
+            await authService.signIn(usuario);
+            navigate("/");
+        } 
+        catch (error) 
+        {
+            setMensagemErro(error.response.data.message);
+        }
+    }
 
     return (
         <Grid className={classes.root} container>
@@ -113,9 +125,35 @@ const SignIn = () =>
                     <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
                     <Typography variant="h5"> Acesso </Typography>
                     <form className={classes.form}>
-                        <TextField variant="outlined" margin="normal" required fullWidth id="email" autoComplete="email" name="email" label="E-mail" autoFocus/>
-                        <TextField variant="outlined" margin="normal" required fullWidth type="password" id="password" autoComplete="current-password" name="password" label="Senha"/>
-                        <Button className={classes.button} fullWidth variant="contained" color="primary" onClick={handleSignIn}> Entrar </Button>
+                        <TextField 
+                            variant="outlined" 
+                            margin="normal" 
+                            required 
+                            fullWidth 
+                            id="email" 
+                            autoComplete="email" 
+                            name="email" 
+                            label="E-mail" 
+                            autoFocus 
+                            onChange={e => pegarCampoEmail(e)} />
+                        <TextField 
+                            variant="outlined" 
+                            margin="normal" 
+                            required 
+                            fullWidth 
+                            type="password" 
+                            id="password" 
+                            autoComplete="current-password" 
+                            name="password" 
+                            label="Senha" 
+                            onChange={e => pegarCampoSenha(e)} />
+                            { mensagemErro && <FormHelperText error>{ mensagemErro }</FormHelperText> }
+                        <Button 
+                            className={classes.button} 
+                            fullWidth 
+                            variant="contained" 
+                            color="primary" 
+                            onClick={handleSignIn}> Entrar </Button>
                         <Grid container>
                             <Grid item> <Link> Esqueceu sua senha? </Link> </Grid>
                             <div className={classes.grow}></div>
